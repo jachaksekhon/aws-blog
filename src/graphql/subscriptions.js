@@ -8,6 +8,7 @@ export const onCreateBlogPosts = /* GraphQL */ `
     onCreateBlogPosts(filter: $filter) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
@@ -25,6 +26,7 @@ export const onUpdateBlogPosts = /* GraphQL */ `
     onUpdateBlogPosts(filter: $filter) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
@@ -42,6 +44,7 @@ export const onDeleteBlogPosts = /* GraphQL */ `
     onDeleteBlogPosts(filter: $filter) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage

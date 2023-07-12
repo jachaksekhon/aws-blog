@@ -6,6 +6,7 @@ export const getBlogPosts = /* GraphQL */ `
     getBlogPosts(id: $id) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
@@ -26,6 +27,7 @@ export const listBlogPosts = /* GraphQL */ `
       items {
         pid
         postTitle
+        postCategory
         postAuthor
         postBody
         postImage

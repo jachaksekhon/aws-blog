@@ -9,6 +9,7 @@ export const createBlogPosts = /* GraphQL */ `
     createBlogPosts(input: $input, condition: $condition) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
@@ -27,6 +28,7 @@ export const updateBlogPosts = /* GraphQL */ `
     updateBlogPosts(input: $input, condition: $condition) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
@@ -45,6 +47,7 @@ export const deleteBlogPosts = /* GraphQL */ `
     deleteBlogPosts(input: $input, condition: $condition) {
       pid
       postTitle
+      postCategory
       postAuthor
       postBody
       postImage
