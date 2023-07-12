@@ -1,16 +1,16 @@
 import "@aws-amplify/ui-react/styles.css"
-import { withAuthenticator, Button, Heading, View, Card } from "@aws-amplify/ui-react"
+import { withAuthenticator, Button } from "@aws-amplify/ui-react"
 
 function App({ signOut }) {
 
   return (
     <>
-      <View>
-        <Card>
-          <Heading level={1}> We now have auth! </Heading>
-        </Card>
-        <Button onClick={signOut}> Sign out </Button>
-      </View>
+      <body>
+        <section>
+          <h2>Welcomet to the new authenticator!</h2>
+          <Button onClick={signOut}> Sign out </Button>
+        </section>
+      </body>
     </>
   )
 }

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "awsblog",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 120,
+      "apiKeyExpirationDate": "2023-11-09T09:52:20.693Z",
+      "keyDescription": "graphQLapi"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
+  }
+}

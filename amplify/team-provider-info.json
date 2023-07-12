@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "awsblog47f9254b": {}
+      },
+      "api": {
+        "awsblog": {}
+      },
+      "storage": {
+        "blogImageStorage": {}
       }
     }
   }

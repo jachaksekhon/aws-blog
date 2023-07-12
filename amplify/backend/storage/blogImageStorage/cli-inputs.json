@@ -1,0 +1,14 @@
+{
+  "resourceName": "blogImageStorage",
+  "policyUUID": "9ee5c0ec",
+  "bucketName": "awsblog802a704a79ef41c3bdaef062141b345b",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

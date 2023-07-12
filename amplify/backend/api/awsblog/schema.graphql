@@ -1,0 +1,8 @@
+type BlogPosts @model @auth(rules: [{ allow: public }]) {
+  pid: ID!
+  postTitle: String!
+  postAuthor: String!
+  postBody: String!
+  postImage: String!
+  createdAt: String!
+}
