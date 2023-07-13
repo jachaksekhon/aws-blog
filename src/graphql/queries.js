@@ -7,7 +7,6 @@ export const getBlogPosts = /* GraphQL */ `
       id
       postTitle
       postCategory
-      postAuthor
       postBody
       postImage
       createdAt
@@ -27,7 +26,6 @@ export const listBlogPosts = /* GraphQL */ `
         id
         postTitle
         postCategory
-        postAuthor
         postBody
         postImage
         createdAt
