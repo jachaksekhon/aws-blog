@@ -1,5 +1,5 @@
 type BlogPosts @model @auth(rules: [{ allow: public }]) {
-  pid: ID!
+  id: ID!
   postTitle: String!
   postCategory: String!
   postAuthor: String!
