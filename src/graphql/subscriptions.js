@@ -6,14 +6,13 @@ export const onCreateBlogPosts = /* GraphQL */ `
     $filter: ModelSubscriptionBlogPostsFilterInput
   ) {
     onCreateBlogPosts(filter: $filter) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
@@ -24,14 +23,13 @@ export const onUpdateBlogPosts = /* GraphQL */ `
     $filter: ModelSubscriptionBlogPostsFilterInput
   ) {
     onUpdateBlogPosts(filter: $filter) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
@@ -42,14 +40,13 @@ export const onDeleteBlogPosts = /* GraphQL */ `
     $filter: ModelSubscriptionBlogPostsFilterInput
   ) {
     onDeleteBlogPosts(filter: $filter) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }

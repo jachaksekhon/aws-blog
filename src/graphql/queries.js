@@ -4,14 +4,13 @@
 export const getBlogPosts = /* GraphQL */ `
   query GetBlogPosts($id: ID!) {
     getBlogPosts(id: $id) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
@@ -25,14 +24,13 @@ export const listBlogPosts = /* GraphQL */ `
   ) {
     listBlogPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        pid
+        id
         postTitle
         postCategory
         postAuthor
         postBody
         postImage
         createdAt
-        id
         updatedAt
         __typename
       }

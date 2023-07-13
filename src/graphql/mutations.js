@@ -7,14 +7,13 @@ export const createBlogPosts = /* GraphQL */ `
     $condition: ModelBlogPostsConditionInput
   ) {
     createBlogPosts(input: $input, condition: $condition) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
@@ -26,14 +25,13 @@ export const updateBlogPosts = /* GraphQL */ `
     $condition: ModelBlogPostsConditionInput
   ) {
     updateBlogPosts(input: $input, condition: $condition) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
@@ -45,14 +43,13 @@ export const deleteBlogPosts = /* GraphQL */ `
     $condition: ModelBlogPostsConditionInput
   ) {
     deleteBlogPosts(input: $input, condition: $condition) {
-      pid
+      id
       postTitle
       postCategory
       postAuthor
       postBody
       postImage
       createdAt
-      id
       updatedAt
       __typename
     }
