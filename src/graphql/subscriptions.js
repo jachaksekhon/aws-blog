@@ -9,6 +9,7 @@ export const onCreateBlogPosts = /* GraphQL */ `
       id
       postTitle
       postCategory
+      postAuthor
       postBody
       postImage
       createdAt
@@ -25,6 +26,7 @@ export const onUpdateBlogPosts = /* GraphQL */ `
       id
       postTitle
       postCategory
+      postAuthor
       postBody
       postImage
       createdAt
@@ -41,6 +43,7 @@ export const onDeleteBlogPosts = /* GraphQL */ `
       id
       postTitle
       postCategory
+      postAuthor
       postBody
       postImage
       createdAt
