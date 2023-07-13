@@ -1,5 +1,5 @@
-import { React, useState } from 'react'
-import { API, Storage } from 'aws-amplify'
+import { React, useState, useEffect } from 'react'
+import { API, Storage, Auth } from 'aws-amplify'
 import * as mutations from './graphql/mutations'
 import {
     Button,
@@ -13,13 +13,21 @@ import {
     
   } from "@aws-amplify/ui-react";
 
-  import { Route, Routes, Link } from 'react-router-dom'
-  import HomePage from './HomePage';
+ 
   
 
 
 export const CreateBlog = () => {
   const [category, setCategory] = useState("Technology")
+  const [user, setUser] = useState("");
+
+  async function getUser() {
+    await Auth.currentUserInfo()
+      .then((data) => {
+        setUser({ user: data.username });
+      })
+      .catch(error => console.log(`Error: ${error.message}`));
+  }
 
   async function createBlogPost(event) {
     event.preventDefault();
@@ -27,8 +35,9 @@ export const CreateBlog = () => {
     const image = form.get("image");
     const data = {
         postTitle: form.get("title"),
-        postCategory: form.get({category}),
+        postCategory: form.get("category"),
         postBody: form.get("postbody"),
+        postAuthor: user,
         postImage: image.name
     };
     if(data.image) await Storage.put(data.name, image);
@@ -39,6 +48,11 @@ export const CreateBlog = () => {
     // we can fetch
     event.target.reset()
   }
+
+  useEffect(() => {
+    getUser()
+  }, [])
+  
 
   return (
     <>
