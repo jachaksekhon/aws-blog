@@ -41,7 +41,11 @@ export const BlogSnippet = ( post ) => {
             alignItems="flex-start"
           >
 
-            <Flex>
+            
+
+            <Heading level={5}>
+              {post.title}
+              <Flex className=' mt-1'>
                 { category === 'Finance' && (
                     <Badge size="small" variation="info">
                     Finance
@@ -59,13 +63,11 @@ export const BlogSnippet = ( post ) => {
                     Technology
                     </Badge>
                 )}
-                
               
-            </Flex>
-
-            <Heading level={5}>
-              {post.title}
+                </Flex>
             </Heading>
+
+            
 
             <Text> 
               {post.body}
