@@ -21,7 +21,8 @@ export const HomePage = () => {
     await Promise.all(
       blogsFromApi.map(async(blog) => {
         if (blog.image) {
-          const url = await Storage.get(blog.name);
+          const url = await Storage.get(blog.postTitle);
+          console.log(url);
           blog.image = url;
         }
         return blog;

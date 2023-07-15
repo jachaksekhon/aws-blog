@@ -37,6 +37,7 @@ export const CreateBlog = () => {
         postImage: image.name
     };
     if (data.postImage) await Storage.put(data.postTitle, image);
+    
     await API.graphql({
         query: mutations.createBlogPosts,
         variables: { input: data }
