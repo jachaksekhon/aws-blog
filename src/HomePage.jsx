@@ -1,26 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "@aws-amplify/ui-react/styles.css"
-import { Button } from "@aws-amplify/ui-react"
+import { Button, Heading, View, Flex, Text } from "@aws-amplify/ui-react"
 import { Auth, API } from 'aws-amplify';
 import * as mutations from './graphql/mutations'
+import { listBlogPosts } from './graphql/queries'
+import BlogSnippet from './BlogSnippet';
+
 
 export const HomePage = () => {
 
-    async function signOut() {
-        try {
-            await Auth.signOut();
-        } catch (error) {
-            console.log('error signing out: ', error);
-            }
-    }
+  const [blogs, setBlogs] = useState([])
+
+  useEffect (() => {
+    getBlogs()
+  }, [])
+
+  async function getBlogs() {
+    const apiData = await API.graphql({ query: listBlogPosts})
+    const blogsFromApi = apiData.data.listBlogPosts.items;
+    await Promise.all(
+      blogsFromApi.map(async(blog) => {
+        if (blog.image) {
+          const url = await Storage.get(blog.name);
+          blog.image = url;
+        }
+        return blog;
+      })
+    )
+    setBlogs(blogsFromApi);
+  }
 
   return (
     <>
-		<div>
-            <h2>This is the new navpage!</h2>
-            <Button onClick={ signOut }>Log Out</Button>
-        </div>
-		
+
+      <Heading level={2}>New Blogs!</Heading>
+
+        {blogs.map((blog) =>
+          <BlogSnippet key = {blog.id || blog.name} 
+          title = {blog.postTitle}
+          body = {blog.postBody}
+          author = {blog.postAuthor}
+          category = {blog.postCategory}
+          image = {blog.postImage} >
+          </BlogSnippet>
+        )}
+
     </> 
     
   )

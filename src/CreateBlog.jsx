@@ -13,10 +13,6 @@ import {
     
   } from "@aws-amplify/ui-react";
 
- 
-  
-
-
 export const CreateBlog = () => {
   const [category, setCategory] = useState("Technology")
   const [user, setUser] = useState("");
@@ -37,15 +33,15 @@ export const CreateBlog = () => {
         postTitle: form.get("title"),
         postCategory: form.get("category"),
         postBody: form.get("postbody"),
-        postAuthor: user,
+        postAuthor: user.user,
         postImage: image.name
     };
-    if(data.image) await Storage.put(data.name, image);
+    if (data.postImage) await Storage.put(data.postTitle, image);
     await API.graphql({
         query: mutations.createBlogPosts,
         variables: { input: data }
     });
-    // we can fetch
+    // we can fetch posts here after inserting
     event.target.reset()
   }
 
@@ -99,6 +95,7 @@ export const CreateBlog = () => {
             placeholder='Enter blog content here...' 
             label="Blog body"
             resize='both'
+            row="10"
             isRequired
             ></TextAreaField>
 
