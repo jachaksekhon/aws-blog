@@ -14,13 +14,6 @@ export const BlogSnippet = ( post ) => {
 
   return (
     <>
-    {post.image && (
-              <Image
-                src={post.image}
-                alt={`visual aid for ${post.title}`}
-                style={{ width: 1000 }}
-              />
-            )}
     <View
     >
       <Card

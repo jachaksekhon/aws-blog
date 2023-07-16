@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "@aws-amplify/ui-react/styles.css"
 import { Button, Heading, View, Flex, Text } from "@aws-amplify/ui-react"
-import { Auth, API } from 'aws-amplify';
+import { Auth, API, Storage } from 'aws-amplify';
 import * as mutations from './graphql/mutations'
 import { listBlogPosts } from './graphql/queries'
 import BlogSnippet from './BlogSnippet';
@@ -20,10 +20,10 @@ export const HomePage = () => {
     const blogsFromApi = apiData.data.listBlogPosts.items;
     await Promise.all(
       blogsFromApi.map(async(blog) => {
-        if (blog.image) {
+        console.log(blog.postImage)
+        if (blog.postImage) {
           const url = await Storage.get(blog.postTitle);
-          console.log(url);
-          blog.image = url;
+          blog.postImage = url;
         }
         return blog;
       })
