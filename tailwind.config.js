@@ -4,7 +4,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        blogfont: ['Century Gothic', 'Clarendon Condensed', 'Copperplate Gothic Light', 'Zurich Ex BT']
+      }
+    },
   },
   plugins: [],
 }

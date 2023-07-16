@@ -5,6 +5,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 
 import HomePage from "./HomePage"
 import CreateBlog from "./CreateBlog"
+import Header from "./Header"
 
 function App( {signOut} ) {
 
@@ -12,10 +13,11 @@ function App( {signOut} ) {
   return (
     
     <>
-      <header>
+      {/* <header>
         <Button className=" m-3"onClick={ signOut }>Log Out</Button>
         <Button>Create Post</Button>
-      </header>
+      </header> */}
+      <Header />
       <HomePage />
       {/* <CreateBlog /> */}
     </>

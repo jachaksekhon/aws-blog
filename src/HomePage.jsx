@@ -34,8 +34,8 @@ export const HomePage = () => {
   return (
     <>
 
-      <Heading level={2}>New Blogs!</Heading>
-
+      <View
+      >
         {blogs.map((blog) =>
           <BlogSnippet key = {blog.id || blog.name} 
           title = {blog.postTitle}
@@ -45,7 +45,7 @@ export const HomePage = () => {
           image = {blog.postImage} >
           </BlogSnippet>
         )}
-
+      </View>
     </> 
     
   )
