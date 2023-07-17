@@ -5,7 +5,7 @@ import { Auth, API, Storage } from 'aws-amplify';
 import * as mutations from './graphql/mutations'
 import { listBlogPosts } from './graphql/queries'
 import BlogSnippet from './BlogSnippet';
-
+import { Route } from 'react-router-dom'
 
 export const HomePage = () => {
 
@@ -20,7 +20,6 @@ export const HomePage = () => {
     const blogsFromApi = apiData.data.listBlogPosts.items;
     await Promise.all(
       blogsFromApi.map(async(blog) => {
-        console.log(blog.postImage)
         if (blog.postImage) {
           const url = await Storage.get(blog.postTitle);
           blog.postImage = url;
@@ -33,19 +32,17 @@ export const HomePage = () => {
 
   return (
     <>
-
-      <View
-      >
-        {blogs.map((blog) =>
-          <BlogSnippet key = {blog.id || blog.name} 
-          title = {blog.postTitle}
-          body = {blog.postBody}
-          author = {blog.postAuthor}
-          category = {blog.postCategory}
-          image = {blog.postImage} >
-          </BlogSnippet>
-        )}
-      </View>
+        <View
+        >
+          {blogs.map((blog) =>
+            <BlogSnippet key = {blog.id || blog.postTitle} 
+            post = {blog}
+            showDelButton={false}
+            >
+            </BlogSnippet>
+          )}
+        </View>
+      
     </> 
     
   )

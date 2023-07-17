@@ -7,6 +7,9 @@ export default {
     extend: {
       fontFamily: {
         blogfont: ['Century Gothic', 'Clarendon Condensed', 'Copperplate Gothic Light', 'Zurich Ex BT']
+      },
+      width: {
+        blogWidth: '900px',
       }
     },
   },
