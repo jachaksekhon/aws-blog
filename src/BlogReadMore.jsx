@@ -125,7 +125,7 @@ export const BlogReadMore = () => {
           <div className="col-span-2">
             <h2 className="text-xl font-semibold mb-4">Related Blogs</h2>
             {relatedBlogs.map((relatedBlog) => (
-              <Card key={relatedBlog.id} className="mb-4">
+              <Card key={relatedBlog.id} className="mb-4 border border-gray-300 rounded-lg">
                 <Flex direction="column">
                   {relatedBlog.postImage && (
                     <Image
