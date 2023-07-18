@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from 'react'
+
 import { API, Storage, Auth } from 'aws-amplify'
 import * as mutations from './graphql/mutations'
+
 import { Route, Link } from 'react-router-dom' 
 import { HomePage } from './HomePage'
 import Header from "./Header"
@@ -18,8 +20,10 @@ import {
 
 
 export const CreateBlog = () => {
+
   const [category, setCategory] = useState("Technology")
   const [user, setUser] = useState("");
+  const [postBody, setPostBody] = useState('');
 
   async function getUser() {
     await Auth.currentUserInfo()
@@ -36,7 +40,7 @@ export const CreateBlog = () => {
     const data = {
         postTitle: form.get("title"),
         postCategory: form.get("category"),
-        postBody: form.get("postbody"),
+        postBody: form.get("body"),
         postAuthor: user.user,
         postImage: image.name
     };
@@ -53,6 +57,10 @@ export const CreateBlog = () => {
   useEffect(() => {
     getUser()
   }, [])
+
+  const handlePostBodyChange = (content) => {
+    setPostBody(content);
+  };
   
 
   return (
@@ -92,15 +100,12 @@ export const CreateBlog = () => {
               <Radio value="Gaming">Gaming</Radio>
               </RadioGroupField>
 
-              <TextAreaField 
-              name="postbody"
-              className=" border-black w-90 p-2"
-              placeholder='Enter blog content here...' 
-              label="Blog body"
+              <TextAreaField
+              name="body"
               resize='both'
-              row="10"
-              isRequired
-              ></TextAreaField>
+              className='m-2'
+              placeholder='Enter post content here..'>
+              </TextAreaField>
 
               <View
               name="image"

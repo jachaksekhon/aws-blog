@@ -1,13 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
+
 import { Amplify } from 'aws-amplify'
 import config from "./aws-exports.js"
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import HomePage from './HomePage.jsx'
 import CreateBlog from './CreateBlog.jsx'
 import MyBlogs from './MyBlogs.jsx'
+import BlogReadMore from './BlogReadMore.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,13 +22,14 @@ const router = createBrowserRouter([
     element: <CreateBlog />
   },
   {
-    path: "createblog",
-    element: <CreateBlog />
-  },
-  {
     path: "myblogs",
     element: <MyBlogs />
+  },
+  {
+    path: "blog/:id",
+    element: <BlogReadMore />
   }
+  
 ])
 
 // configuring app to use AWS resources

@@ -61,6 +61,12 @@ const MyBlogs = () => {
   }
 
   async function deleteBlog(id, postTitle) {
+
+    const confirmed = window.confirm('Are you sure you want to delete this blog?');
+      if (!confirmed) {
+        return;
+      }
+
     const newBlogs = blogs.filter((blog) => blog.id !== id);
     setBlogs(newBlogs);
     await Storage.remove(postTitle)
@@ -75,7 +81,7 @@ const MyBlogs = () => {
         });
     }
     catch(error) {
-      console.error("Error deleting blog")
+      console.error(error)
     } 
     
   }
@@ -138,7 +144,7 @@ const MyBlogs = () => {
             key={blog.id || blog.name}
             post={blog}
             showDelButton={true}
-            onDelete={() => deleteBlog(blog)}
+            onDelete={() => deleteBlog(blog.id, blog.postTitle)}
           />
         ))}
       </Flex>
