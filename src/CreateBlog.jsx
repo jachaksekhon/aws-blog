@@ -14,8 +14,7 @@ import {
     RadioGroupField,
     Radio,
     TextAreaField,
-    FileUploader,
-    Text
+    FileUploader
     
   } from "@aws-amplify/ui-react"
 
@@ -108,17 +107,12 @@ export const CreateBlog = () => {
               placeholder='Enter post content here..'>
               </TextAreaField>
 
-              <Text className="text-gray-500 mb-2 ml-2">
-                Please upload an image with the recommended size of 900x350 pixels.
-              </Text>
-
-              <View className="m-2">
-                <FileUploader
-                  name="image"
-                  accept="image/*"
-                  label="Image"
-                />
-              </View>
+              <View
+              name="image"
+              className=" p-2"
+              as="input"
+              type="file"
+              />
               
 
               <View>
