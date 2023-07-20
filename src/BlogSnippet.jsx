@@ -12,7 +12,6 @@ import { Card,
     Button, } from '@aws-amplify/ui-react'
 
 export const BlogSnippet = ( {post, showDelButton, onDelete} ) => {
-    console.log(post.postAuthor)
 
     const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -86,7 +85,7 @@ export const BlogSnippet = ( {post, showDelButton, onDelete} ) => {
 
                             <Text
                             className=' ml-5 mr-5 line-clamp-2 text-gray-400 text-sm cursor-default italic'> 
-                                {post.postBody}
+                                <div dangerouslySetInnerHTML={{ __html: post.postBody }} />
                             </Text>
 
                         <Link to={`/blog/${post.id}`}>

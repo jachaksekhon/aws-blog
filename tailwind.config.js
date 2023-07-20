@@ -10,6 +10,8 @@ export default {
       },
       width: {
         blogWidth: '900px',
+        createBlogWidthL: '1400px',
+        createBlogWidthS: '700px'
       }
     },
   },

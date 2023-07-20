@@ -1,11 +1,7 @@
 import { React, useState, useEffect } from 'react'
+import { Route, Link, useNavigate } from 'react-router-dom' 
 
 import { API, Storage, Auth } from 'aws-amplify'
-import * as mutations from './graphql/mutations'
-
-import { Route, Link, useNavigate } from 'react-router-dom' 
-import { HomePage } from './HomePage'
-import Header from "./Header"
 import {
     Button,
     Heading,
@@ -13,17 +9,49 @@ import {
     View,
     RadioGroupField,
     Radio,
-    TextAreaField,
-    FileUploader
+    FileUploader,
+    ThemeProvider,
+    Flex
     
   } from "@aws-amplify/ui-react"
+
+  import { StorageManager } from '@aws-amplify/ui-react-storage';
+
+import * as mutations from './graphql/mutations'
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+import { HomePage } from './HomePage'
+import Header from "./Header"
+
 
 
 export const CreateBlog = () => {
 
+  const theme = {
+    name: 'my-theme',
+    tokens: {
+      colors: {},
+      borderWidths: {
+        small: { value: '2px' },
+        medium: { value: '4px' },
+        large: { value: '8px' },
+      },
+      radii: {
+        xs: { value: '1rem' },
+        small: { value: '2rem' },
+        medium: { value: '2rem' },
+        large: { value: '2rem' },
+        xl: { value: '3rem' },
+      },
+    },
+  };
+
   const [category, setCategory] = useState("Technology")
   const [user, setUser] = useState("");
   const [postBody, setPostBody] = useState('');
+  // const [file, setFile] = useState('');
   const [successMessage, setSuccessMessage] = useState("")
   const navigate = useNavigate()
 
@@ -43,10 +71,16 @@ export const CreateBlog = () => {
     const data = {
       postTitle: form.get("title"),
       postCategory: form.get("category"),
-      postBody: form.get("body"),
+      postBody: postBody,
       postAuthor: user.user,
       postImage: image.name
     }
+    console.log(data.postTitle)
+    console.log(data.postCategory)
+    console.log(data.postBody)
+    console.log(data.postAuthor)
+    console.log(data.postImage)
+    
     if (data.postImage) await Storage.put(data.postTitle, image)
 
     try {
@@ -78,33 +112,31 @@ export const CreateBlog = () => {
     <>
       <Header />
 
-      <View>
-        <Heading 
-          level={4}
-          className="text-green-600 ml-4 mb-3 "
-        >
-          Hi this is the create blog page
-        </Heading>
-      </View>
+      <Heading
+        level={4}
+        className="text-green-600 ml-2 mb-3 pt-3 pl-2"
+      >
+        Create Blog
+      </Heading>
 
-      <View as='form' className='px-2' onSubmit={createBlogPost}>
-        <TextField 
-          className="border-black w-90 p-2" 
+      <View as="form" className="px-4 pt-4 pb-8  lg:w-createBlogWidthL sm:w-createBlogWidthS" onSubmit={createBlogPost}>
+        <TextField
+          className="w-full pb-4 mb-4"
           name="title"
           size="default"
-          descriptiveText=""
-          placeholder='Blog Title...'
+          placeholder="Blog Title..."
           label="Blog name"
           isRequired
         />
-
+      
         <RadioGroupField
-          className="m-2"
+          className="mb-4 pb-4"
           name="category"
           direction="row"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           label="Category:"
+          labelHidden
           isRequired
           errorMessage="This is a required field. Please select an option."
           hasError={!category}
@@ -114,29 +146,61 @@ export const CreateBlog = () => {
           <Radio value="Gaming">Gaming</Radio>
         </RadioGroupField>
 
-        <TextAreaField
-          name="body"
-          resize='both'
-          className='m-2'
-          placeholder='Enter post content here..'
-        />
+        <Flex
+        direction="column"
+        gap="3rem"
+        className='pb-5'>
+          <ReactQuill
+            value={postBody}
+            onChange={handlePostBodyChange}
+            theme="snow"
+            className="mb-4 h-96"
+          />
 
-        <View
-          name="image"
-          className="p-2"
-          as="input"
-          type="file"
-        />
-              
+          <View
+            name="image"
+            className="mb-4 mt-12"
+            as="input"
+            type="file"
+          />
+
+          {/* <ThemeProvider theme={theme}>
+            <StorageManager
+            className=""
+            variation='drop'
+            acceptedFileTypes={['image/*']}
+            showImages={true}
+            maxFileCount={1}
+            accessLevel="public"
+            onUploadSuccess={({ key }) => {
+              setFile((prevFile) => {
+                return {
+                  ...prevFile,
+                  [key]: {
+                    status: 'success',
+                  },
+                };
+              });
+            }}
+            />
+          </ThemeProvider> */}
+        </Flex>
+        
+        
 
         <View>
-          <Button className="" name="backToHome"> Discard </Button>
-                  
-          <Button to="/" className="" type="submit" name="createPost">
+          <Button className="mr-2" name="backToHome">
+            Discard
+          </Button>
+
+          <Button
+            className=""
+            type="submit"
+            name="createPost"
+          >
             Create Post!
           </Button>
         </View>
-              
       </View>
 
       {successMessage && (
@@ -147,7 +211,7 @@ export const CreateBlog = () => {
         </View>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CreateBlog
+export default CreateBlog;
