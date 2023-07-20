@@ -128,7 +128,7 @@ export const CreateBlog = () => {
           label="Blog name"
           isRequired
         />
-      
+    
         <RadioGroupField
           className="mb-4 pb-4"
           name="category"
@@ -136,7 +136,6 @@ export const CreateBlog = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           label="Category:"
-          labelHidden
           isRequired
           errorMessage="This is a required field. Please select an option."
           hasError={!category}
