@@ -2,15 +2,17 @@ import React from 'react'
 import logo from './assets/blogrLeft.png'
 import headerLogo from './assets/headerLogo.png'
 
-import { Flex, Image, Button, View } from '@aws-amplify/ui-react'
+import { Flex, Image, Button, View, ThemeProvider } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'
 import { Link, useNavigate } from 'react-router-dom'
 
 import CreateBlog from './CreateBlog'
 
 
+
+
 const Header = ( ) => {
-  
+
     const navigateTo = useNavigate();
 
     async function signOut() {
@@ -46,15 +48,16 @@ const Header = ( ) => {
         
   
         <div style={{ display: 'flex', alignItems: 'center' }}>
+        
           <Link to="/createblog">
-            <Button className="ml-2"> Create Post </Button>
+            <Button className="ml-2 bg-tan"> Create Post </Button>
           </Link>
   
           <Link to="/myblogs">
-            <Button className="ml-2"> My Blogs </Button>
+            <Button className="ml-2 bg-tan"> My Blogs </Button>
           </Link>
   
-          <Button className="ml-2 mr-4" onClick={signOut}>
+          <Button className="ml-2 mr-4 bg-tan" onClick={signOut}>
             Logout
           </Button>
         </div>
