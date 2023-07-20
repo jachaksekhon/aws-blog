@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Auth, API, Storage } from 'aws-amplify';
-import { Text, View, Flex, Button, RadioGroupField, Radio } from '@aws-amplify/ui-react';
+import { Text, View, Flex, Button, RadioGroupField, Radio, Link } from '@aws-amplify/ui-react';
 
 import { listBlogPosts } from './graphql/queries';
 import { deleteBlogPosts } from './graphql/mutations';
@@ -139,14 +139,24 @@ const MyBlogs = () => {
           </Button>
         </Flex>
 
-        {blogs.map((blog) => (
+        {blogs.length === 0 ? (
+          <>
+            <h2>You dont have any blogs right now, try creating one!</h2>
+            <Link to="/createblog">
+                <Button className=' ml-auto'> Create Post </Button>
+            </Link>
+          </>
+        
+      ) : (
+        blogs.map((blog) => (
           <BlogSnippet
             key={blog.id || blog.name}
             post={blog}
             showDelButton={true}
             onDelete={() => deleteBlog(blog.id, blog.postTitle)}
           />
-        ))}
+        ))
+      )}
       </Flex>
     </>
   );

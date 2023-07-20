@@ -43,6 +43,10 @@ export const HomePage = () => {
 
   return (
     <>
+        <h2 className="text-center font-serif text-tan text-lg p-4">
+        Explore a world of captivating stories, insightful articles, and thought-provoking perspectives right here on our homepage
+      </h2>
+
         <View
         >
           {blogs.map((blog) =>

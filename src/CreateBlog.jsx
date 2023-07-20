@@ -114,12 +114,12 @@ export const CreateBlog = () => {
 
       <Heading
         level={4}
-        className="text-green-600 ml-2 mb-3 pt-3 pl-2"
+        className="text-tan ml-[215px] mb-3 pt-3 pl-2"
       >
         Create Blog
       </Heading>
 
-      <View as="form" className="px-4 pt-4 pb-8  lg:w-createBlogWidthL sm:w-createBlogWidthS" onSubmit={createBlogPost}>
+      <View as="form" className="px-4 pt-4 pb-8 ml-[210px] lg:w-createBlogWidthL sm:w-createBlogWidthS" onSubmit={createBlogPost}>
         <TextField
           className="w-full pb-4 mb-4"
           name="title"

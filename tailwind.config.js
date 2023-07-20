@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}"
@@ -12,6 +13,9 @@ export default {
         blogWidth: '900px',
         createBlogWidthL: '1400px',
         createBlogWidthS: '700px'
+      },
+      colors: {
+        'tan' : '#D2B48C'
       }
     },
   },
