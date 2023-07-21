@@ -37,6 +37,7 @@ export const HomePage = () => {
       })
     )
     // Sort blogs by createdAt in descending order (most recent first)
+    blogsFromApi.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     setBlogs(blogsFromApi);
   }
 

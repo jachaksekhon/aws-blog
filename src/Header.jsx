@@ -2,7 +2,7 @@ import React from 'react'
 import logo from './assets/blogrLeft.png'
 import headerLogo from './assets/headerLogo.png'
 
-import { Flex, Image, Button, View, ThemeProvider } from '@aws-amplify/ui-react'
+import { Image, Button, } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'
 import { Link, useNavigate } from 'react-router-dom'
 

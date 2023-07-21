@@ -61,7 +61,7 @@ const MyBlogs = () => {
         return blog;
       })
     );
-
+    filteredBlogs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     setBlogs(filteredBlogs);
   }
 

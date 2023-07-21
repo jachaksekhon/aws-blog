@@ -4,7 +4,6 @@ import { Link, Navigate } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { Card,
     Image,
-    View,
     Heading,
     Flex,
     Badge,
