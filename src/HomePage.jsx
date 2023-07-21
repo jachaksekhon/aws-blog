@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 
 import "@aws-amplify/ui-react/styles.css"
-import { Button, Heading, View, Flex, RadioGroupField, Radio } from "@aws-amplify/ui-react"
-import { Auth, API, Storage } from 'aws-amplify';
-import * as mutations from './graphql/mutations'
+import { Heading, View, Flex, RadioGroupField, Radio } from "@aws-amplify/ui-react"
+import { API, Storage } from 'aws-amplify';
 import { listBlogPosts } from './graphql/queries'
 
 import BlogSnippet from './BlogSnippet';
-import { Route } from 'react-router-dom'
 
 export const HomePage = () => {
 
