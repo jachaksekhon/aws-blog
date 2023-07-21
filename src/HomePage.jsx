@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 
 import "@aws-amplify/ui-react/styles.css"
-import { Button, Heading, View, Flex, Text } from "@aws-amplify/ui-react"
+import { Button, Heading, View, Flex, RadioGroupField, Radio } from "@aws-amplify/ui-react"
 import { Auth, API, Storage } from 'aws-amplify';
 import * as mutations from './graphql/mutations'
 import { listBlogPosts } from './graphql/queries'
@@ -13,8 +13,11 @@ import { Route } from 'react-router-dom'
 export const HomePage = () => {
 
   const [blogs, setBlogs] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const [wantSorted, setWantSorted] = useState(true)
+
+
+
 
   useEffect (() => {
     getBlogs()
@@ -34,34 +37,46 @@ export const HomePage = () => {
       })
     )
     // Sort blogs by createdAt in descending order (most recent first)
-    if (wantSorted) {
-      blogsFromApi.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); 
-    }
-    
     setBlogs(blogsFromApi);
   }
 
   return (
     <>
-        <h2 className="text-center font-serif text-tan text-lg p-4">
-        Explore a world of captivating stories, insightful articles, and thought-provoking perspectives
-      </h2>
-
-        <View
-        >
-          {blogs.map((blog) =>
-            <BlogSnippet key = {blog.id || blog.postTitle} 
-            post = {blog}
-            showDelButton={false}
-            showEditButton={false}
-            >
-            </BlogSnippet>
-          )}
+      <Flex direction="row" gap="2rem" justifyContent="center">
+        <View >
+          <Heading level={4} className="text-tan">
+            Filter by Category:
+          </Heading>
+          <RadioGroupField
+            direction="column"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <Radio value="All">All</Radio>
+            <Radio value="Technology">Technology</Radio>
+            <Radio value="Finance">Finance</Radio>
+            <Radio value="Gaming">Gaming</Radio>
+          </RadioGroupField>
         </View>
-      
-    </> 
-    
-  )
-}
+
+        <View style={{ paddingRight: '130px' }}>
+          {blogs
+            .filter(
+              (blog) =>
+                selectedCategory === "All" || blog.postCategory === selectedCategory
+            )
+            .map((blog) => (
+              <BlogSnippet
+                key={blog.id || blog.postTitle}
+                post={blog}
+                showDelButton={false}
+                showEditButton={false}
+              />
+            ))}
+        </View>
+      </Flex>
+    </>
+  );
+};
 
 export default HomePage
