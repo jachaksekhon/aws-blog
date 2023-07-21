@@ -15,10 +15,6 @@ export const HomePage = () => {
   const [blogs, setBlogs] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-
-
-
-
   useEffect (() => {
     getBlogs()
   }, [])
