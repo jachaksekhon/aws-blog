@@ -11,6 +11,7 @@ import HomePage from './HomePage.jsx'
 import CreateBlog from './CreateBlog.jsx'
 import MyBlogs from './MyBlogs.jsx'
 import BlogReadMore from './BlogReadMore.jsx'
+import EditBlog from './EditBlog.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "blog/:id",
     element: <BlogReadMore />
+  },
+  {
+    path: "editblog/:id",
+    element: <EditBlog />
   }
   
 ])

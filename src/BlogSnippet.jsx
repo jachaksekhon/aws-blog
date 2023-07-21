@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 import { Card,
@@ -11,7 +11,7 @@ import { Card,
     Text,
     Button, } from '@aws-amplify/ui-react'
 
-export const BlogSnippet = ( {post, showDelButton, onDelete} ) => {
+export const BlogSnippet = ( {post, showDelButton, onDelete, showEditButton, onEdit} ) => {
 
     const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -92,12 +92,21 @@ export const BlogSnippet = ( {post, showDelButton, onDelete} ) => {
                             <Button variation="primary" className=' bg-gray-800 text-white mt-4'>Read More</Button>
                         </Link>
                         
+                        <Flex
+                        direction="row">
+                            {showDelButton && (
+                                <Button variation="danger" className="bg-red-500" onClick={onDelete}>
+                                    Delete
+                                </Button>
+                            )}
 
-                        {showDelButton && (
-                            <Button variation="danger" className="bg-red-500" onClick={onDelete}>
-                                Delete
-                            </Button>
-                        )}
+                            {showEditButton && (
+                                <Link to={`/editblog/${post.id}`} className="ml-2">
+                                    <Button className=' bg-green-500'>Edit Post</Button>
+                                </Link>
+                            )}
+                        </Flex>
+                        
                         
                     </Flex>
                 </Card>

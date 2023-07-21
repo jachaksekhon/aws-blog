@@ -162,27 +162,6 @@ export const CreateBlog = () => {
             as="input"
             type="file"
           />
-
-          {/* <ThemeProvider theme={theme}>
-            <StorageManager
-            className=""
-            variation='drop'
-            acceptedFileTypes={['image/*']}
-            showImages={true}
-            maxFileCount={1}
-            accessLevel="public"
-            onUploadSuccess={({ key }) => {
-              setFile((prevFile) => {
-                return {
-                  ...prevFile,
-                  [key]: {
-                    status: 'success',
-                  },
-                };
-              });
-            }}
-            />
-          </ThemeProvider> */}
         </Flex>
         
         

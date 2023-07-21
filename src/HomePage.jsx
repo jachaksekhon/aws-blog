@@ -53,6 +53,7 @@ export const HomePage = () => {
             <BlogSnippet key = {blog.id || blog.postTitle} 
             post = {blog}
             showDelButton={false}
+            showEditButton={false}
             >
             </BlogSnippet>
           )}

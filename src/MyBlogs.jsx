@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
+
 import { Auth, API, Storage } from 'aws-amplify';
-import { Text, View, Flex, Button, RadioGroupField, Radio, Link } from '@aws-amplify/ui-react';
+import { Text, View, Flex, Button, RadioGroupField, Radio } from '@aws-amplify/ui-react';
 
 import { listBlogPosts } from './graphql/queries';
-import { deleteBlogPosts } from './graphql/mutations';
+import { deleteBlogPosts, updateBlogPosts } from './graphql/mutations';
 
 
 import Header from './Header';
@@ -14,6 +16,7 @@ const MyBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [userFetched, setUserFetched] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const navigate = useNavigate();
 
   function getUser() {
     Auth.currentAuthenticatedUser({
@@ -35,6 +38,8 @@ const MyBlogs = () => {
       getBlogs();
     }
   }, [userFetched, selectedCategories]);
+
+  // fetch blog posts
 
   async function getBlogs() {
     const apiData = await API.graphql({ query: listBlogPosts });
@@ -59,6 +64,14 @@ const MyBlogs = () => {
 
     setBlogs(filteredBlogs);
   }
+
+  // edit blog handle
+
+  const handleEditBlog = (id) => {
+    navigate(`/editblog/${id}`);
+  };
+
+  // Delete blog posts
 
   async function deleteBlog(id, postTitle) {
 
@@ -154,6 +167,8 @@ const MyBlogs = () => {
             post={blog}
             showDelButton={true}
             onDelete={() => deleteBlog(blog.id, blog.postTitle)}
+            showEditButton={true}
+            onEdit={() => handleEditBlog(blog.id)}
           />
         ))
       )}
