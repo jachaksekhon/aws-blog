@@ -8,6 +8,7 @@ import { listBlogPosts } from './graphql/queries'
 
 import BlogSnippet from './BlogSnippet';
 
+
 export const HomePage = () => {
 
   const [blogs, setBlogs] = useState([])
