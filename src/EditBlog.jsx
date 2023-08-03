@@ -28,6 +28,15 @@ const EditBlog = () => {
     }
   }
 
+  const handleDiscard = () => {
+    const isConfirmed = window.confirm(
+      'Are you sure you want to leave your changes?'
+    );
+    if (isConfirmed) {
+      navigate('/');
+    }
+  };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
@@ -133,7 +142,7 @@ const EditBlog = () => {
         </Flex>
 
         <View>
-          <Button className="mr-2" name="backToHome">
+          <Button className="mr-2" onClick={handleDiscard}>
             Discard
           </Button>
 

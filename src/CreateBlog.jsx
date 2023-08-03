@@ -55,6 +55,15 @@ export const CreateBlog = () => {
   const [successMessage, setSuccessMessage] = useState("")
   const navigate = useNavigate()
 
+  const handleDiscard = () => {
+    const isConfirmed = window.confirm(
+      'Are you sure you want to discard the post?'
+    );
+    if (isConfirmed) {
+      navigate('/');
+    }
+  };
+
 
   async function getUser() {
     await Auth.currentUserInfo()
@@ -167,7 +176,7 @@ export const CreateBlog = () => {
         
 
         <View>
-          <Button className="mr-2" name="backToHome">
+          <Button className="mr-2" onClick={handleDiscard}>
             Discard
           </Button>
 
