@@ -57,7 +57,7 @@ export const CreateBlog = () => {
 
   const handleDiscard = () => {
     const isConfirmed = window.confirm(
-      'Are you sure you want to discard the post?'
+      'Are you sure you want to discard the post?' 
     );
     if (isConfirmed) {
       navigate('/');

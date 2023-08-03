@@ -146,7 +146,7 @@ const EditBlog = () => {
             Discard
           </Button>
 
-          <Button className="" type="submit" name="createPost">
+          <Button className="" type="submit" name="createPost"> 
             Save Changes
           </Button>
         </View>
