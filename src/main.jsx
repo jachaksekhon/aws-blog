@@ -1,13 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
 
 import { Amplify } from 'aws-amplify'
 import config from "./aws-exports.js"
 
-import HomePage from './HomePage.jsx'
 import CreateBlog from './CreateBlog.jsx'
 import MyBlogs from './MyBlogs.jsx'
 import BlogReadMore from './BlogReadMore.jsx'

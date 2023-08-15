@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 import { Card,
@@ -10,7 +9,7 @@ import { Card,
     Text,
     Button, } from '@aws-amplify/ui-react'
 
-export const BlogSnippet = ( {post, showDelButton, onDelete, showEditButton, onEdit} ) => {
+export const BlogSnippet = ( {post, showDelButton, onDelete, showEditButton} ) => {
 
     const formattedDate = new Date(post.createdAt).toLocaleDateString('en-US', {
         month: 'short',
@@ -127,6 +126,7 @@ BlogSnippet.propTypes = {
       id: PropTypes.string.isRequired,
     }).isRequired,
     showDelButton: PropTypes.bool.isRequired,
+    showEditButton: PropTypes.bool.isRequired,
     onDelete: PropTypes.func,
   };
 

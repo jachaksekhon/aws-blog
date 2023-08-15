@@ -1,5 +1,5 @@
-import { React, useState, useEffect } from 'react'
-import { Route, Link, useNavigate } from 'react-router-dom' 
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom' 
 
 import { API, Storage, Auth } from 'aws-amplify'
 import {
@@ -9,44 +9,19 @@ import {
     View,
     RadioGroupField,
     Radio,
-    FileUploader,
-    ThemeProvider,
     Flex
-    
   } from "@aws-amplify/ui-react"
-
-  import { StorageManager } from '@aws-amplify/ui-react-storage';
 
 import * as mutations from './graphql/mutations'
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import { HomePage } from './HomePage'
 import Header from "./Header"
 
 
 
 export const CreateBlog = () => {
-
-  const theme = {
-    name: 'my-theme',
-    tokens: {
-      colors: {},
-      borderWidths: {
-        small: { value: '2px' },
-        medium: { value: '4px' },
-        large: { value: '8px' },
-      },
-      radii: {
-        xs: { value: '1rem' },
-        small: { value: '2rem' },
-        medium: { value: '2rem' },
-        large: { value: '2rem' },
-        xl: { value: '3rem' },
-      },
-    },
-  };
 
   const [category, setCategory] = useState("Technology")
   const [user, setUser] = useState("");
@@ -116,7 +91,6 @@ export const CreateBlog = () => {
     setPostBody(content);
   };
   
-
   return (
     <>
       <Header />
@@ -164,7 +138,6 @@ export const CreateBlog = () => {
             theme="snow"
             className="mb-4 h-96"
           />
-
           <View
             name="image"
             className="mb-4 mt-12"
@@ -173,8 +146,6 @@ export const CreateBlog = () => {
           />
         </Flex>
         
-        
-
         <View>
           <Button className="mr-2" onClick={handleDiscard}>
             Discard

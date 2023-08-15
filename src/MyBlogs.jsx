@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
 import { Auth, API, Storage } from 'aws-amplify';
-import { Text, View, Flex, Button, RadioGroupField, Radio } from '@aws-amplify/ui-react';
+import { Flex, Button } from '@aws-amplify/ui-react';
 
 import { listBlogPosts } from './graphql/queries';
-import { deleteBlogPosts, updateBlogPosts } from './graphql/mutations';
+import { deleteBlogPosts } from './graphql/mutations';
 
 
 import Header from './Header';

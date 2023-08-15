@@ -1,12 +1,14 @@
-import { React, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+
 import { API, Storage, Auth } from 'aws-amplify'
 import { Button, Heading, TextField, View, RadioGroupField, Radio, Flex } from "@aws-amplify/ui-react"
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
-import { StorageManager } from '@aws-amplify/ui-react-storage'
 import { updateBlogPosts } from './graphql/mutations'
 import { getBlogPosts } from './graphql/queries'
+
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+
 import Header from "./Header"
 
 const EditBlog = () => {

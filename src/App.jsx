@@ -1,25 +1,17 @@
 // import "@aws-amplify/ui-react/styles.css"
-import { withAuthenticator, Button } from "@aws-amplify/ui-react"
-import { Auth } from 'aws-amplify'
-import { Routes, Route, Link } from 'react-router-dom'
+import { withAuthenticator} from "@aws-amplify/ui-react"
 
 import HomePage from "./HomePage"
-import CreateBlog from "./CreateBlog"
 import Header from "./Header"
 
-function App( {signOut} ) {
+function App() {
 
 
   return (
     
     <>
-      {/* <header>
-        <Button className=" m-3"onClick={ signOut }>Log Out</Button>
-        <Button>Create Post</Button>
-      </header> */}
       <Header />
       <HomePage />
-      {/* <CreateBlog /> */}
     </>
   )
 }

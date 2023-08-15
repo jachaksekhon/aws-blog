@@ -1,12 +1,8 @@
-import React from 'react'
 import logo from './assets/blogrLeft.png'
-import headerLogo from './assets/headerLogo.png'
 
 import { Image, Button, } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'
 import { Link, useNavigate } from 'react-router-dom'
-
-import CreateBlog from './CreateBlog'
 
 
 
@@ -44,8 +40,6 @@ const Header = ( ) => {
             style={{ marginRight: '1rem' }}
           />
         </Link>
-  
-        
   
         <div style={{ display: 'flex', alignItems: 'center' }}>
         
