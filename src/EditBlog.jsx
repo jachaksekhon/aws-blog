@@ -51,6 +51,11 @@ const EditBlog = () => {
       setCategory(blog.postCategory)
       setPostBody(blog.postBody)
       setCurTitle(blog.postTitle)
+
+      if(blog.postImage){
+        const imageUrl = await Storage.get(blog.postTitle);
+        setSelectedImage(imageUrl);
+      }
     } catch (error) {
       console.log('Error fetching blog post: ', error)
     }
@@ -73,7 +78,7 @@ const EditBlog = () => {
       postImage: selectedImage ? selectedImage.name : null,
     }
 
-    if (selectedImage) {
+    if (selectedImage && typeof selectedImage == "object") {
       await Storage.put(data.postTitle, selectedImage);
     }
 
