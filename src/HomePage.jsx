@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 
-
 import "@aws-amplify/ui-react/styles.css"
-import { Heading, View, Flex, RadioGroupField, Radio } from "@aws-amplify/ui-react"
+import { Heading, View, Flex, RadioGroupField, Radio, Button } from "@aws-amplify/ui-react"
 import { API, Storage } from 'aws-amplify';
 import { listBlogPosts } from './graphql/queries'
 
 import BlogSnippet from './BlogSnippet';
+import SubscriptionForm from './SubscriptionForm';
 
 
 export const HomePage = () => {
 
   const [blogs, setBlogs] = useState([])
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isSubscriptionOpen, setIsSubscriptionOpen] = useState(false);
 
   useEffect (() => {
     getBlogs()
@@ -35,6 +36,14 @@ export const HomePage = () => {
     blogsFromApi.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     setBlogs(blogsFromApi);
   }
+
+  const handleSubscribeClick = () => {
+    setIsSubscriptionOpen(true);
+  };
+
+  const handleSubscriptionClose = () => {
+    setIsSubscriptionOpen(false);
+  };
 
   return (
     <>
@@ -70,6 +79,11 @@ export const HomePage = () => {
               />
             ))}
         </View>
+
+        <View>
+        <Button onClick={handleSubscribeClick}>Subscribe to Posts</Button>
+          <SubscriptionForm isOpen={isSubscriptionOpen} onRequestClose={handleSubscriptionClose} />
+          </View>
       </Flex>
     </>
   );

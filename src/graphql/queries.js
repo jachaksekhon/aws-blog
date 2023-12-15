@@ -39,3 +39,47 @@ export const listBlogPosts = /* GraphQL */ `
     }
   }
 `;
+export const getUserSubscription = /* GraphQL */ `
+  query GetUserSubscription($id: ID!) {
+    getUserSubscription(id: $id) {
+      id
+      userName
+      phoneNumber
+      email
+      sendEmailNoti
+      sendPhoneNoti
+      genres
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listUserSubscriptions = /* GraphQL */ `
+  query ListUserSubscriptions(
+    $filter: ModelUserSubscriptionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserSubscriptions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userName
+        phoneNumber
+        email
+        sendEmailNoti
+        sendPhoneNoti
+        genres
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

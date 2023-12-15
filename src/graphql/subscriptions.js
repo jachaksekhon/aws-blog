@@ -52,3 +52,57 @@ export const onDeleteBlogPosts = /* GraphQL */ `
     }
   }
 `;
+export const onCreateUserSubscription = /* GraphQL */ `
+  subscription OnCreateUserSubscription(
+    $filter: ModelSubscriptionUserSubscriptionFilterInput
+  ) {
+    onCreateUserSubscription(filter: $filter) {
+      id
+      userName
+      phoneNumber
+      email
+      sendEmailNoti
+      sendPhoneNoti
+      genres
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateUserSubscription = /* GraphQL */ `
+  subscription OnUpdateUserSubscription(
+    $filter: ModelSubscriptionUserSubscriptionFilterInput
+  ) {
+    onUpdateUserSubscription(filter: $filter) {
+      id
+      userName
+      phoneNumber
+      email
+      sendEmailNoti
+      sendPhoneNoti
+      genres
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteUserSubscription = /* GraphQL */ `
+  subscription OnDeleteUserSubscription(
+    $filter: ModelSubscriptionUserSubscriptionFilterInput
+  ) {
+    onDeleteUserSubscription(filter: $filter) {
+      id
+      userName
+      phoneNumber
+      email
+      sendEmailNoti
+      sendPhoneNoti
+      genres
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
