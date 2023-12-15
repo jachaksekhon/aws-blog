@@ -4,9 +4,10 @@ import { Auth, API } from 'aws-amplify';
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
-import { createUserSubscription } from "./graphql/mutations";
+import { createUserSubscription, updateUserSubscription } from "./graphql/mutations";
+import { listUserSubscriptions } from "./graphql/queries";
 
-import { getUserSubscriptionByUser } from "./graphql/custom-queries";
+// import { getUserSubscriptionByUser } from "./graphql/custom-queries";
 
 const SubscriptionForm = ({ isOpen, onRequestClose }) => {
   const [genres, setGenres] = useState([]);
@@ -61,25 +62,59 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
 
   const subscribeUser = async () => {
     try {
+
+     if ((sendEmail && !email) || (sendMobile && !mobile)) {
+        console.error('Please enter a valid email and/or mobile number');
+        return;
+        }
+      // Get the current authenticated user
       const user = await Auth.currentAuthenticatedUser();
       const username = user.username;
   
-      // Your API call to subscribe the user
-      const apiResponse = await API.graphql({
-        query: createUserSubscription,
-        variables: {
-          input: {
-            userName: username,
-            genres: genres,
-            sendEmailNoti: sendEmail,
-            sendPhoneNoti: sendMobile,
-            email: email,
-            phoneNumber: mobile,
-          },
-        },
+      // Check if the user already has a subscription
+      const existingSubscriptions = await API.graphql({
+        query: listUserSubscriptions,
+        variables: { filter: { userName: { eq: username } } }
       });
   
-      console.log('Subscription API Response:', apiResponse);
+      if (existingSubscriptions.data.listUserSubscriptions.items.length > 0) {
+        // If the user has an existing subscription, update it
+        const existingSubscription = existingSubscriptions.data.listUserSubscriptions.items[0];
+  
+        const updateResponse = await API.graphql({
+          query: updateUserSubscription,
+          variables: {
+            input: {
+              id: existingSubscription.id,
+              // Update the fields you want to modify
+              genres: genres,
+              sendEmailNoti: sendEmail,
+              sendPhoneNoti: sendMobile,
+              email: email,
+              phoneNumber: mobile,
+            },
+          },
+        });
+  
+        console.log('Subscription updated:', updateResponse);
+      } else {
+        // If the user doesn't have an existing subscription, create a new one
+        const createResponse = await API.graphql({
+          query: createUserSubscription,
+          variables: {
+            input: {
+              userName: username,
+              genres: genres,
+              sendEmailNoti: sendEmail,
+              sendPhoneNoti: sendMobile,
+              email: email,
+              phoneNumber: mobile,
+            },
+          },
+        });
+  
+        console.log('New subscription created:', createResponse);
+      }
     } catch (error) {
       console.error('Error subscribing user:', error);
     }
