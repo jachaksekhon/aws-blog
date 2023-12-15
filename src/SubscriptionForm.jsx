@@ -15,13 +15,14 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
   const [sendMobile, setSendMobile] = useState(false);
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
+  const [error, setError] = useState('');
 
   const [user, setUser] = useState('');
 
   const handleGenreChange = (genre) => {
     if (genre === 'all') {
       // If 'all' is clicked, toggle all genres
-      setGenres((prevGenres) => (prevGenres.length === 4 ? [] : ['tech', 'finance', 'gaming', 'all']));
+      setGenres((prevGenres) => (prevGenres.length === 3 ? [] : ['tech', 'finance', 'gaming']));
     } else {
       // Toggle the selected genre
       setGenres((prevGenres) =>
@@ -58,16 +59,24 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
     setMobile(e.target.value);
   };
 
+  const isValidEmail = (value) => {
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
+
+  const isValidPhoneNumber = (value) => {
+    // Check if the phone number has 10 digits
+    return /^\d{10}$/.test(value);
+  };
+
   
 
   const subscribeUser = async () => {
     try {
 
-     if ((sendEmail && !email) || (sendMobile && !mobile)) {
-        console.error('Please enter a valid email and/or mobile number');
-        return;
-        }
       // Get the current authenticated user
+      setError('');
       const user = await Auth.currentAuthenticatedUser();
       const username = user.username;
   
@@ -116,11 +125,18 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
         console.log('New subscription created:', createResponse);
       }
     } catch (error) {
+      setError('Error subscribing user. Please try again.');
       console.error('Error subscribing user:', error);
     }
   };
 
   const handleSubscribe = () => {
+
+    if ((sendEmail && (!email || !isValidEmail(email))) || (sendMobile && !isValidPhoneNumber(mobile))) {
+        setError('Please enter a valid email and/or mobile number');
+        return;
+      }
+
     subscribeUser();
     console.log('Subscribing...', { genres, sendEmail, sendMobile, email, mobile });
 
@@ -158,7 +174,7 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
            Gaming
         </label>
         <label style={{ marginRight: 20 }}>
-          <input type="checkbox" onChange={() => handleGenreChange('all')} checked={genres.length === 4} />
+          <input type="checkbox" onChange={() => handleGenreChange('all')} checked={genres.length === 3} />
            All
         </label>
       </div>
@@ -167,16 +183,17 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
           <input type="checkbox" onChange={() => setSendEmail(!sendEmail)} checked={sendEmail} />
            Email
         </label>
-        {sendEmail && <input type="text" placeholder="Enter your email" onChange={handleEmailChange} />}
+        {sendEmail && <input type="text" placeholder="youremail@email.com" onChange={handleEmailChange} />}
       </div>
       <div style={{ marginTop: 10 }}>
         <label style={{ marginRight: 20 }}>
           <input type="checkbox" onChange={() => setSendMobile(!sendMobile)} checked={sendMobile} />
            Mobile
         </label>
-        {sendMobile && <input type="text" placeholder="Enter your mobile number" onChange={handleMobileChange} />}
+        {sendMobile && <input type="text" placeholder="ex: 6041234567" onChange={handleMobileChange} />}
       </div>
       <div style={{ marginTop: 20 }}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <Button onClick={handleSubscribe}>Ok</Button>
         <Button onClick={onRequestClose}>Cancel</Button>
       </div>
