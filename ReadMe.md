@@ -1,6 +1,8 @@
 Fullstack blog application built using React and Tailwind and hosted using AWS Amplify hosting.
 
 Languages used: Javascript and Java
+
+
 Tools: AWS - Lambda, S3, DynamoDB, AmazonSES, Amplify | Appsync | Node.js | GraphQL | Maven | Docker | Twilio 
 
 View the project here: https://master.d3rmuxe1kj9gm3.amplifyapp.com/
