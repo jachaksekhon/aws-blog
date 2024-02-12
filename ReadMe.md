@@ -5,6 +5,8 @@ Amplifys Authentication and Storage services were utilized to enable user regist
 
 View the project here: https://master.d3rmuxe1kj9gm3.amplifyapp.com/
 
+View the logic for sending notifications via lambda here: https://github.com/jachaksekhon/NotificationLambda
+
 Demo Account:
 user: Testforaws95
 pass: Testforaws95
