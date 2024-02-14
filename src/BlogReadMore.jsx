@@ -1,6 +1,6 @@
-import { React, useState, useEffect }from 'react'
+import { useState, useEffect }from 'react'
 import { useParams } from 'react-router-dom'
-import { Text, Card, Flex, Image, Badge } from '@aws-amplify/ui-react'
+import { Card, Flex, Image, Badge } from '@aws-amplify/ui-react'
 import { Link } from 'react-router-dom'
 
 import { getBlogPosts, listBlogPosts } from './graphql/queries'
@@ -31,7 +31,6 @@ export const BlogReadMore = () => {
   }, [blog])
 
   // get the blog based off of the passed in ID
-
   async function getBlog(id) {
     try {
       const { data } = await API.graphql({
@@ -58,7 +57,7 @@ export const BlogReadMore = () => {
   async function getRelatedBlogs(category, currentId) {
     try {
       const { data } = await API.graphql({
-        query: listBlogPosts, // Assuming your query for fetching all blog posts is named `listBlogPosts`
+        query: listBlogPosts, 
         variables: {
           filter: {
             postCategory: {

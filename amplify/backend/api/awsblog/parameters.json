@@ -2,5 +2,11 @@
   "AppSyncApiName": "awsblog",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-07-12T09:52:25.058Z"
+  "AuthModeLastUpdated": "2023-12-14T02:07:11.386Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authawsblog47f9254b",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

@@ -52,18 +52,19 @@ export const CreateBlog = () => {
     event.preventDefault()
     const form = new FormData(event.target)
     const image = form.get("image")
+
+    if (!image) {
+      const confirmed = window.confirm("You haven't uploaded an image. Continue?");
+      if (!confirmed) return;
+    }
+
     const data = {
       postTitle: form.get("title"),
       postCategory: form.get("category"),
       postBody: postBody,
       postAuthor: user.user,
-      postImage: image.name
+      postImage: image ? image.name : null
     }
-    console.log(data.postTitle)
-    console.log(data.postCategory)
-    console.log(data.postBody)
-    console.log(data.postAuthor)
-    console.log(data.postImage)
     
     if (data.postImage) await Storage.put(data.postTitle, image)
 
@@ -74,6 +75,15 @@ export const CreateBlog = () => {
       })
       setSuccessMessage('Successfully posted your blog!')
       event.target.reset()
+
+      await fetch('https://nifdmhes0f.execute-api.us-west-1.amazonaws.com/Production/blognotificationresource', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ category: data.postCategory })
+      });
+
       setTimeout(() => {
         setSuccessMessage('')
         navigate('/')

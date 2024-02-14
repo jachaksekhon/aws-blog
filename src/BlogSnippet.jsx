@@ -17,6 +17,8 @@ export const BlogSnippet = ( {post, showDelButton, onDelete, showEditButton} ) =
         year: 'numeric',
       });
 
+    
+
   return (
     <>
         <div className='w-full flex justify-center items-center'>

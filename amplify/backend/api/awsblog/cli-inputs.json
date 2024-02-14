@@ -5,11 +5,16 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 120,
-      "apiKeyExpirationDate": "2023-11-09T09:52:20.693Z",
-      "keyDescription": "graphQLapi"
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2024-12-13T02:07:07.954Z",
+      "keyDescription": "subscribeQL"
     },
     "conflictResolution": {},
-    "additionalAuthTypes": []
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authawsblog47f9254b"
+      }
+    ]
   }
 }
