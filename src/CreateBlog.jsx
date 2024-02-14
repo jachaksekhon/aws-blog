@@ -75,6 +75,15 @@ export const CreateBlog = () => {
       })
       setSuccessMessage('Successfully posted your blog!')
       event.target.reset()
+
+      await fetch('https://nifdmhes0f.execute-api.us-west-1.amazonaws.com/Production/blognotificationresource', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ category: data.postCategory })
+      });
+
       setTimeout(() => {
         setSuccessMessage('')
         navigate('/')

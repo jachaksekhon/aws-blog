@@ -22,7 +22,7 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
   const handleGenreChange = (genre) => {
     if (genre === 'all') {
       // If 'all' is clicked, toggle all genres
-      setGenres((prevGenres) => (prevGenres.length === 3 ? [] : ['tech', 'finance', 'gaming']));
+      setGenres((prevGenres) => (prevGenres.length === 3 ? [] : ['Technology', 'Finance', 'Gaming']));
     } else {
       // Toggle the selected genre
       setGenres((prevGenres) =>
@@ -162,15 +162,15 @@ const SubscriptionForm = ({ isOpen, onRequestClose }) => {
       <div>
         Genres:
         <label style={{ marginRight: 20, marginLeft: 10 }}>
-          <input type="checkbox" onChange={() => handleGenreChange('tech')} checked={genres.includes('tech')} />
+          <input type="checkbox" onChange={() => handleGenreChange('Technology')} checked={genres.includes('Technology')} />
            Tech
         </label>
         <label style={{ marginRight: 20 }}>
-          <input type="checkbox" onChange={() => handleGenreChange('finance')} checked={genres.includes('finance')} />
+          <input type="checkbox" onChange={() => handleGenreChange('Finance')} checked={genres.includes('Finance')} />
            Finance
         </label>
         <label style={{ marginRight: 20 }}>
-          <input type="checkbox" onChange={() => handleGenreChange('gaming')} checked={genres.includes('gaming')} />
+          <input type="checkbox" onChange={() => handleGenreChange('Gaming')} checked={genres.includes('Gaming')} />
            Gaming
         </label>
         <label style={{ marginRight: 20 }}>
