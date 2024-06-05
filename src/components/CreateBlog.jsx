@@ -12,7 +12,7 @@ import {
     Flex
   } from "@aws-amplify/ui-react"
 
-import * as mutations from './graphql/mutations'
+import * as mutations from '../graphql/mutations'
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';

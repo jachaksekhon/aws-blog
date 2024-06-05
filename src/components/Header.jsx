@@ -1,4 +1,4 @@
-import logo from './assets/blogrLeft.png'
+import logo from '../assets/blogrLeft.png'
 
 import { Image, Button, } from '@aws-amplify/ui-react'
 import { Auth } from 'aws-amplify'

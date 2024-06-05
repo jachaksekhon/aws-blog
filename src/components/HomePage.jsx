@@ -1,9 +1,10 @@
-import { useBlogs } from './context/BlogContext';
+import { useBlogs } from '../context/BlogContext';
 import { useState } from 'react';
 import "@aws-amplify/ui-react/styles.css";
 import { Heading, View, Flex, RadioGroupField, Radio, Button } from "@aws-amplify/ui-react";
 import BlogSnippet from './BlogSnippet';
 import SubscriptionForm from './SubscriptionForm';
+import CategoryFilter from './partials/CategoryFilter';
 
 export const HomePage = () => {
   const { blogs } = useBlogs();
@@ -22,19 +23,10 @@ export const HomePage = () => {
     <>
       <Flex direction="row" gap="2rem" justifyContent="center">
         <View>
-          <Heading level={4} className="text-tan">
-            Filter by Category:
-          </Heading>
-          <RadioGroupField
-            direction="column"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <Radio value="All">All</Radio>
-            <Radio value="Technology">Technology</Radio>
-            <Radio value="Finance">Finance</Radio>
-            <Radio value="Gaming">Gaming</Radio>
-          </RadioGroupField>
+          <CategoryFilter
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
         </View>
 
         <View>

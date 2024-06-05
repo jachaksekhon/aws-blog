@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Auth, API, Storage } from 'aws-amplify';
 import { Flex, Button } from '@aws-amplify/ui-react';
 
-import { listBlogPosts } from './graphql/queries';
-import { deleteBlogPosts } from './graphql/mutations';
+import { listBlogPosts } from '../graphql/queries';
+import { deleteBlogPosts } from '../graphql/mutations';
 
 
 import Header from './Header';

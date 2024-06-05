@@ -2,8 +2,8 @@
 import { withAuthenticator} from "@aws-amplify/ui-react"
 import { BlogProvider } from "./context/BlogContext"
 
-import HomePage from "./HomePage"
-import Header from "./Header"
+import HomePage from "./components/HomePage"
+import Header from "./components/Header"
 
 function App() {
 

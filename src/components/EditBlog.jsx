@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { API, Storage, Auth } from 'aws-amplify'
 import { Button, Heading, TextField, View, RadioGroupField, Radio, Flex } from "@aws-amplify/ui-react"
-import { updateBlogPosts } from './graphql/mutations'
-import { getBlogPosts } from './graphql/queries'
+import { updateBlogPosts } from '../graphql/mutations'
+import { getBlogPosts } from '../graphql/queries'
 
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'

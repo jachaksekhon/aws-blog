@@ -4,8 +4,8 @@ import { Auth, API } from 'aws-amplify';
 import {React, useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
-import { createUserSubscription, updateUserSubscription } from "./graphql/mutations";
-import { listUserSubscriptions } from "./graphql/queries";
+import { createUserSubscription, updateUserSubscription } from "../graphql/mutations";
+import { listUserSubscriptions } from "../graphql/queries";
 
 const SubscriptionForm = ({ isOpen, onRequestClose }) => {
   const [genres, setGenres] = useState([]);

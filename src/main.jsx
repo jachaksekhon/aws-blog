@@ -7,10 +7,10 @@ import './index.css'
 import { Amplify } from 'aws-amplify'
 import config from "./aws-exports.js"
 
-import CreateBlog from './CreateBlog.jsx'
-import MyBlogs from './MyBlogs.jsx'
-import BlogReadMore from './BlogReadMore.jsx'
-import EditBlog from './EditBlog.jsx'
+import CreateBlog from './components/CreateBlog.jsx'
+import MyBlogs from './components/MyBlogs.jsx'
+import BlogReadMore from './components/BlogReadMore.jsx'
+import EditBlog from './components/EditBlog.jsx'
 
 const router = createBrowserRouter([
   {

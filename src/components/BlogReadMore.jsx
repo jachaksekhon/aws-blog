@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Card, Flex, Image, Badge } from '@aws-amplify/ui-react'
 import { Link } from 'react-router-dom'
 
-import { getBlogPosts, listBlogPosts } from './graphql/queries'
+import { getBlogPosts, listBlogPosts } from '../graphql/queries'
 import { API, Storage } from 'aws-amplify'
 
 import Header from './Header'
