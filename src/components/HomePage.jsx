@@ -1,9 +1,9 @@
 import { useBlogs } from '../context/BlogContext';
 import { useState } from 'react';
 import "@aws-amplify/ui-react/styles.css";
-import { Heading, View, Flex, RadioGroupField, Radio, Button } from "@aws-amplify/ui-react";
+import { View, Flex} from "@aws-amplify/ui-react";
 import BlogSnippet from './BlogSnippet';
-import SubscriptionForm from './SubscriptionForm';
+import SubscriptionBox from './partials/SubscriptionBox';
 import CategoryFilter from './partials/CategoryFilter';
 
 export const HomePage = () => {
@@ -47,8 +47,11 @@ export const HomePage = () => {
         </View>
 
         <View>
-          <Button onClick={handleSubscribeClick}>Subscribe to Posts</Button>
-          <SubscriptionForm isOpen={isSubscriptionOpen} onRequestClose={handleSubscriptionClose} />
+          <SubscriptionBox 
+            isSubscriptionOpen={isSubscriptionOpen} 
+            handleSubscribeClick={handleSubscribeClick} 
+            handleSubscriptionClose={handleSubscriptionClose} 
+          />
         </View>
       </Flex>
     </>

@@ -7,7 +7,8 @@ export const Errors = {
 
 
 export const Titles = {
-    categoryFilterTitle: 'Filter by category'
+    categoryFilterTitle: 'Filter by category',
+    subscriptionTitle: 'Subscribe to posts'
   };
 
 
