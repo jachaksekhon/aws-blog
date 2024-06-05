@@ -1,13 +1,11 @@
 import { Button } from "@aws-amplify/ui-react"
 import { Auth, API } from 'aws-amplify';
 
-import React, { useState, useEffect } from 'react';
+import {React, useState, useEffect } from 'react';
 import Modal from 'react-modal';
 
 import { createUserSubscription, updateUserSubscription } from "./graphql/mutations";
 import { listUserSubscriptions } from "./graphql/queries";
-
-// import { getUserSubscriptionByUser } from "./graphql/custom-queries";
 
 const SubscriptionForm = ({ isOpen, onRequestClose }) => {
   const [genres, setGenres] = useState([]);

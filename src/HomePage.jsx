@@ -1,41 +1,14 @@
-import { useEffect, useState } from 'react'
-
-import "@aws-amplify/ui-react/styles.css"
-import { Heading, View, Flex, RadioGroupField, Radio, Button } from "@aws-amplify/ui-react"
-import { API, Storage } from 'aws-amplify';
-import { listBlogPosts } from './graphql/queries'
-
+import { useBlogs } from './context/BlogContext';
+import { useState } from 'react';
+import "@aws-amplify/ui-react/styles.css";
+import { Heading, View, Flex, RadioGroupField, Radio, Button } from "@aws-amplify/ui-react";
 import BlogSnippet from './BlogSnippet';
 import SubscriptionForm from './SubscriptionForm';
 
-
 export const HomePage = () => {
-
-  const [blogs, setBlogs] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const { blogs } = useBlogs();
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [isSubscriptionOpen, setIsSubscriptionOpen] = useState(false);
-
-  useEffect (() => {
-    getBlogs()
-  }, [])
-
-  async function getBlogs() {
-    const apiData = await API.graphql({ query: listBlogPosts})
-    const blogsFromApi = apiData.data.listBlogPosts.items;
-    await Promise.all(
-      blogsFromApi.map(async(blog) => {
-        if (blog.postImage) {
-          const url = await Storage.get(blog.postTitle);
-          blog.postImage = url;
-        }
-        console.log(blog)
-        return blog;
-      })
-    )
-    // Sort blogs by createdAt in descending order (most recent first)
-    blogsFromApi.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    setBlogs(blogsFromApi);
-  }
 
   const handleSubscribeClick = () => {
     setIsSubscriptionOpen(true);
@@ -48,7 +21,7 @@ export const HomePage = () => {
   return (
     <>
       <Flex direction="row" gap="2rem" justifyContent="center">
-        <View >
+        <View>
           <Heading level={4} className="text-tan">
             Filter by Category:
           </Heading>
@@ -64,11 +37,12 @@ export const HomePage = () => {
           </RadioGroupField>
         </View>
 
-        <View style={{ paddingRight: '130px' }}>
-          {blogs
+        <View>
+          {Array.isArray(blogs) && blogs
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
             .filter(
               (blog) =>
-                selectedCategory === "All" || blog.postCategory === selectedCategory
+                selectedCategory === 'All' || blog.postCategory === selectedCategory
             )
             .map((blog) => (
               <BlogSnippet
@@ -81,12 +55,12 @@ export const HomePage = () => {
         </View>
 
         <View>
-        <Button onClick={handleSubscribeClick}>Subscribe to Posts</Button>
+          <Button onClick={handleSubscribeClick}>Subscribe to Posts</Button>
           <SubscriptionForm isOpen={isSubscriptionOpen} onRequestClose={handleSubscriptionClose} />
-          </View>
+        </View>
       </Flex>
     </>
   );
 };
 
-export default HomePage
+export default HomePage;
