@@ -32,7 +32,7 @@
 
 - 📝 **Blog Creation** – Authenticated users can create and manage blog posts
 - 🔒 **Authentication** – Secure login via AWS Amplify Auth
-- 📦 **Media Upload** – Upload and serve images/files via Amazon S3
+- 📦 **Media Upload** – Upload and serve images/files via Amazon S3, blogs stored in DynamoDB
 - 📬 **Notifications** – Serverless Lambda integration with Twilio and SES
 - 🚀 **Scalable Architecture** – Built using AWS serverless infrastructure
 
