@@ -40,7 +40,7 @@
 
 ## 🚀 Demo
 
-- **Live Site**: [Blogr][https://master.d3rmuxe1kj9gm3.amplifyapp.com/]
+- **Live Site**: [Blogr](https://master.d3rmuxe1kj9gm3.amplifyapp.com/)
 - **Demo Account**  
   - Username: `Testforaws95`  
   - Password: `Testforaws95`
